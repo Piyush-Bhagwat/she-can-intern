@@ -1,29 +1,33 @@
-import { addIntern, getIntern } from "./firebase.firestore";
+import { app } from "./firebase.config";
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
-const { getAuth, GoogleAuthProvider, signInWithPopup } = require("firebase/auth");
-const { app } = require("./firebase.config");
-
-const auth = getAuth(app);
+let auth;
+if (typeof window !== "undefined") {
+    auth = getAuth(app); // Only runs in browser
+}
 
 async function loginWithGoogle() {
+    if (!auth) return; // avoid running on server
+
     const provider = new GoogleAuthProvider();
 
-    await signInWithPopup(auth, provider).then(async (res) => {
-        const u = res.user;
+    const res = await signInWithPopup(auth, provider);
+    const u = res.user;
 
-        const user = {
-            displayName: u.displayName,
-            email: u.email,
-            photoURL: u.photoURL,
-            uid: u.uid
-        }
+    const user = {
+        displayName: u.displayName,
+        email: u.email,
+        photoURL: u.photoURL,
+        uid: u.uid
+    };
 
-        if (!await getIntern(user.uid)) {
-            await addIntern(user);
-        }
+    const { getIntern, addIntern } = await import("./firebase.firestore");
 
-        localStorage.setItem("user", JSON.stringify(user.uid));
+    if (!(await getIntern(user.uid))) {
+        await addIntern(user);
+    }
 
-    });
+    localStorage.setItem("user", JSON.stringify(user.uid));
 }
-export { loginWithGoogle }
+
+export { loginWithGoogle };
