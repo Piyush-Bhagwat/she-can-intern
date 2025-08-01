@@ -1,4 +1,4 @@
-import Image from 'next/image'
+'use client'
 import React from 'react'
 import { FaCrow, FaCrown } from 'react-icons/fa6'
 
@@ -9,7 +9,7 @@ const Leaderboard = () => {
         { id: 3, name: "Ravi", donations: 5200, img: "https://imgs.search.brave.com/4i11i4BhkA1zEIkMg2tpmnNiXjbdQccnIdAnMHZD2ho/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzA3LzM5LzIzLzIw/LzM2MF9GXzczOTIz/MjAzOF9SZ1Ayc2xW/ek16MVBFY0JqNlh3/T0dEcGpITzV2czZw/Ry5qcGc" },
         { id: 4, name: "Ishita", donations: 4300, img: "https://imgs.search.brave.com/n59pRqxPhzAWV9Zg-98uou2tsLebNdfEpi1nT6L8qlM/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/cHJvZmlsZXBpY3R1/cmUuYWkvc3R5bGVz/L2doaWJsaS53ZWJw" },
     ]
-
+   
     return (
         <div className="min-h-screen bg-[#fffaf7] py-10 flex flex-col items-center">
             <h1 className="text-3xl font-bold text-[#ff582c] mb-8">Top Interns</h1>

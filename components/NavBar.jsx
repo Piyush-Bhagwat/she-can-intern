@@ -1,5 +1,4 @@
 'use client'
-import Image from 'next/image'
 import Link from 'next/link'
 import { FaBars } from "react-icons/fa6"
 import { useState } from 'react'

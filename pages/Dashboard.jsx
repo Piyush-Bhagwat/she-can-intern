@@ -1,26 +1,33 @@
-
+'use client'
 import { useAppContext } from '@/context/appContext'
-import Image from 'next/image'
 import React from 'react'
-import { FaCrow, FaCrown, FaGift, FaHeart } from 'react-icons/fa6'
+import { FaGift, FaHeart } from 'react-icons/fa6'
 
 const Dashboard = () => {
-    const {user} = useAppContext();
+    const { user } = useAppContext();
+
+    if (!user) {
+        return (
+            <div className="min-h-screen flex items-center justify-center">
+                <p>Loading user...</p>
+            </div>
+        );
+    }
 
     return (
         <div className="min-h-[70vh] bg-background flex flex-col items-center p-2 md:p-6">
-     
+
             <div className="bg-white shadow-lg rounded-2xl p-2 md:p-6 w-full  max-w-sm border border-accent/20">
                 <div className="flex items-center gap-5">
                     <img
-                        src= {user?.photoURL}
+                        src={user?.photoURL}
                         alt="User"
                         width={100}
                         height={100}
 
                         className="rounded-full border-4 border-accent/40"
                     />
-                    <div className='flex flex-col justify-start'> 
+                    <div className='flex flex-col justify-start'>
                         <h2 className="mt-3 text-xl font-bold text-primary-text">User Name</h2>
                         <p className="text-sm text-gray-500">useremail@gmail.com</p>
                         <h1 className="mt-4 text-3xl font-bold text-accent">₹ 2630</h1>
@@ -28,7 +35,7 @@ const Dashboard = () => {
                 </div>
             </div>
 
-            
+
             <div className="mt-4 md:mt-8 grid grid-cols-2 gap-6 w-full max-w-lg">
                 <div className="bg-white p-4 rounded-xl shadow-md border border-accent/20 flex flex-col items-center">
                     <FaGift className="text-accent text-3xl mb-2" />

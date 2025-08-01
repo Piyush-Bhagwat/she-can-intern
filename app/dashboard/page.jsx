@@ -5,7 +5,7 @@ import Login from '@/pages/Login'
 import React from 'react'
 
 const DashboardPage = () => {
-  const { user } = useAppContext();
+  const { user } = useAppContext() || {};
   return (
     <div>
 
