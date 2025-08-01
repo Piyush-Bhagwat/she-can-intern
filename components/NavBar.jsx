@@ -9,7 +9,7 @@ import { useRouter } from 'next/navigation'
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
 
-    const { user, setUser } = useAppContext()
+    const { user, setUser } = useAppContext() || {}
     const router = useRouter();
 
     async function handleLogin() {
@@ -20,7 +20,8 @@ const Navbar = () => {
 
 
     function handleLogout() {
-        setUser(null);
+        setUser?.(null);
+        if(typeof window !== 'undefined')
         localStorage.removeItem('user');
     }
 

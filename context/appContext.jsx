@@ -1,7 +1,10 @@
 'use client'
 import { getIntern } from '@/DB/firebase.firestore';
 import React, { createContext, useContext, useEffect, useState } from 'react'
-const appContext = createContext(null);
+const appContext = createContext({
+  user: null,
+  setUser: () => {},
+});
 
 const AppContextProvider = ({ children }) => {
     const [user, setUser] = useState(null);
@@ -15,6 +18,8 @@ const AppContextProvider = ({ children }) => {
     }
 
     useEffect(() => {
+        if (typeof window === "undefined") return; 
+        
         const localUser = localStorage.getItem('user');
 
         console.log(localUser);

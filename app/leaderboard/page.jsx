@@ -5,11 +5,12 @@ import Login from '@/pages/Login';
 import React from 'react'
 
 const LeaderboardPage = () => {
-    const {user } = useAppContext();
-  return (
-    user ? 
-    <Leaderboard /> : <Login />
-  )
+    const context = useAppContext();
+    const user = context?.user;
+    return (
+        user ?
+            <Leaderboard /> : <Login />
+    )
 }
 
 export default LeaderboardPage
