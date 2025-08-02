@@ -28,8 +28,8 @@ const Dashboard = () => {
                         className="rounded-full border-4 border-accent/40"
                     />
                     <div className='flex flex-col justify-start'>
-                        <h2 className="mt-3 text-xl font-bold text-primary-text">User Name</h2>
-                        <p className="text-sm text-gray-500">useremail@gmail.com</p>
+                        <h2 className="mt-3 text-xl font-bold text-primary-text">{user?.displayName}</h2>
+                        <p className="text-sm text-gray-500">{user?.email}</p>
                         <h1 className="mt-4 text-3xl font-bold text-accent">₹ 2630</h1>
                     </div>
                 </div>

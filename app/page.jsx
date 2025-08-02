@@ -1,7 +1,10 @@
 'use client'
+import { useAppContext } from '@/context/appContext'
 import Link from 'next/link'
+import { useState } from 'react'
 
 export default function Hero() {
+  const { user } = useAppContext() || {};
   return (
     <div className="relative -mt-22 min-h-screen flex flex-col items-center justify-center text-center bg-background overflow-hidden">
 
@@ -25,12 +28,25 @@ export default function Hero() {
           Join Us Today
         </p>
 
-        <Link
-          href="/login"
-          className="bg-accent text-white px-6 py-3 shadow-md rounded-full font-semibold hover:bg-[#e14d24] transition"
-        >
-          Login / Register
-        </Link>
+        {
+          user ?
+
+            <Link
+              href="/dashboard"
+              className="bg-accent text-white px-6 py-3 shadow-md rounded-full font-semibold hover:bg-[#e14d24] transition"
+            >
+              Go To Dashboar
+            </Link>
+            :
+            <Link
+              href="/login"
+              className="bg-accent text-white px-6 py-3 shadow-md rounded-full font-semibold hover:bg-[#e14d24] transition"
+            >
+              Login / Register
+            </Link>
+
+        }
+
       </div>
     </div>
   )
